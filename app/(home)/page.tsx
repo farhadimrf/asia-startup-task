@@ -9,8 +9,11 @@ import { GoPlus } from "react-icons/go";
 import { FiUser } from "react-icons/fi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Badge, Button, Select, TextInput } from "@/components/ui";
-import { Items } from "@/components/ui/inputs/select";
 import { cn } from "@/utils/cn";
+import { genderItems } from "@/utils/gender";
+import { birthYearItems } from "@/utils/year";
+import { birthMonthItems } from "@/utils/month";
+import { birthDayItems } from "@/utils/days";
 
 const schema = z.object({
    passengers: z
@@ -30,22 +33,22 @@ const schema = z.object({
 
 type FormType = z.infer<typeof schema>;
 
+const initialPassenger = {
+   firstName: "",
+   lastName: "",
+   idNumber: "",
+   gender: "",
+   birthDay: "",
+   birthMonth: "",
+   birthYear: "",
+};
+
 const HomePage = () => {
    const { handleSubmit, control, reset, setValue } = useForm<FormType>({
       resolver: zodResolver(schema),
       mode: "onSubmit",
       defaultValues: {
-         passengers: [
-            {
-               firstName: "",
-               lastName: "",
-               idNumber: "",
-               gender: "",
-               birthDay: "",
-               birthMonth: "",
-               birthYear: "",
-            },
-         ],
+         passengers: [initialPassenger],
       },
    });
 
@@ -54,32 +57,6 @@ const HomePage = () => {
       name: "passengers",
    });
 
-   const genderItems: Items[] = [
-      { label: "جنسیت", value: "" },
-      { label: "مرد", value: "male" },
-      { label: "زن", value: "female" },
-   ];
-   const birthYearItems: Items[] = [
-      { label: "سال", value: "" },
-      { label: "۱۴۰۱", value: "1401" },
-      { label: "۱۴۰۲", value: "1402" },
-      { label: "۱۴۰۳", value: "1403" },
-   ];
-   const birthMonthItems: Items[] = [
-      { label: "ماه", value: "" },
-      { label: "فروردین", value: "1" },
-      { label: "اردیبهشت", value: "2" },
-      { label: "خرداد", value: "3" },
-   ];
-   const birthDayItems: Items[] = [
-      { label: "روز", value: "" },
-      { label: "۰۱", value: "1" },
-      { label: "۰۲", value: "2" },
-      { label: "۰۳", value: "3" },
-      { label: "۰۴", value: "4" },
-      { label: "۰۵", value: "5" },
-      { label: "۰۶", value: "6" },
-   ];
    const onSubmit: SubmitHandler<FormType> = (data) => {
       // Send data to back-end
       console.log("data", data);
@@ -231,17 +208,7 @@ const HomePage = () => {
                label="اضافه کردن مسافر جدید"
                className=" outline outline-1 my-6 py-2"
                icon={<GoPlus size={20} />}
-               onClick={() =>
-                  append({
-                     firstName: "",
-                     lastName: "",
-                     idNumber: "",
-                     gender: "",
-                     birthYear: "",
-                     birthMonth: "",
-                     birthDay: "",
-                  })
-               }
+               onClick={() => append(initialPassenger)}
             />
             <div className="w-full flex justify-center border-t">
                <Button
