@@ -236,7 +236,7 @@ const HomePage = () => {
                      firstName: "",
                      lastName: "",
                      idNumber: "",
-                     gender: "male",
+                     gender: "",
                      birthYear: "",
                      birthMonth: "",
                      birthDay: "",
