@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Introduction
 
-## Getting Started
+This repository contains my submission for the assessment task for a front-end position, developed using Next.js 14. The task involved two main objectives:
 
-First, run the development server:
+1. Implementing a dynamic form UI.
+2. Refactoring existing codebase to improve readability and maintainability.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Dynamic Form UI
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In the first part of the assessment, I utilized several technologies to implement a dynamic form user interface:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Tailwind CSS is a utility-first CSS framework that provides a set of pre-designed classes to rapidly build custom user interfaces. I leveraged Tailwind CSS to style the form components and ensure a consistent and visually appealing layout.
 
-## Learn More
+### React Hook Form
 
-To learn more about Next.js, take a look at the following resources:
+React Hook Form is a library for managing form state in React applications using hooks. It offers a simple and efficient way to handle form validation, submission, and error handling. I integrated React Hook Form to manage the state and validation logic of the dynamic form, enabling seamless user interactions and validation feedback.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Zod Validator
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Zod is a TypeScript-first schema declaration and validation library. It allows defining robust schemas for data validation and ensures type safety at compile time. I utilized Zod to define the schema for the form data and validate user inputs against the specified schema. This helped maintain data integrity and enforce validation rules, improving the reliability of the form submission process.
 
-## Deploy on Vercel
+## Code Refactoring
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In this code refactor, several improvements and changes have been made to enhance the functionality and logic:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Type Annotations**:
+
+   -  Type annotations have been added to the `useState` hooks for `products`, `inputValue`, and `filter`.
+   -  This ensures better type safety and clarity within the code.
+
+2. **Error Handling**:
+
+   -  Error handling has been implemented within the `fetchProducts` function to handle cases where the API call fails.
+   -  In case of failure, it falls back to using mock data and logs the error to the console.
+
+3. **Function Naming**:
+
+   -  Function names like `add`, `toggle`, and `remove` have been replaced with more descriptive names like `addProduct`, `toggleProductArchived`, and `removeProduct`, respectively.
+   -  This enhances code readability and understanding of what each function does.
+
+4. **Immutability**:
+
+   -  When adding or modifying products, immutability has been ensured by creating new arrays or objects instead of mutating the existing state directly.
+   -  This helps prevent unintended side effects and ensures the predictability of state changes.
+
+5. **Switch Statement**:
+   -  The `filteredProducts` function now uses a `switch` statement for better readability and maintainability.
+
+Note:
+
+-  Due to the faked API URL provided in the task, manual data has been set to state for testing purposes. Ensure proper integration with the actual backend API once available.
+
+Additional Suggestions:
+
+-  [ ] **Define Axios Client**:
+   -  Create a centralized Axios client for handling API requests, promoting consistency and easier management of API calls throughout the application.
+-  [ ] **Integrate React-Query**:
+   -  Utilize React-Query to handle data fetching and caching, simplifying state management and improving performance by reducing unnecessary network requests.
+      Overall, this refactor focuses on improving the functionality, logic, and maintainability of the codebase without significant changes to the UI.
+
+## Installation
+
+To get started with the assessment task, follow these steps:
+
+1. **Clone Repository**:
+
+   -  Clone the repository from GitHub to your local machine:
+      ```
+      git clone https://github.com/farhadimrf/asia-startup-task
+      ```
+
+2. **Install Dependencies**:
+
+   -  Navigate to the project directory and install the necessary dependencies using npm:
+      ```
+      cd asia-startup-task
+      npm install
+      ```
+
+3. **Run the Application**:
+   -  Once the dependencies are installed, you can run the application locally. The UI task is accessible at the main route `/`, while the refactored section is available at the `/refactor` pathname:
+      ```
+      npm run dev
+      ```
+   -  The application will start running on port `3000` by default. Open your web browser and navigate to `http://localhost:3000` to view the UI task, or `http://localhost:3000/refactor` to access the refactored section.
