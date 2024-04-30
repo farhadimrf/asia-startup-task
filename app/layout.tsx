@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import LocalFont from "next/font/local";
 import { cn } from "@/utils/cn";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = LocalFont({ src: "../public/fonts/Alibaba-Regular.ttf" });
 
 export const metadata: Metadata = {
    title: "Asia Startup UI Task",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en" className="h-full">
-         <body className={cn("relative h-full", inter.className)}>
+         <body className={cn("relative h-full", font.className)}>
             <main className="relative flex flex-col min-h-screen">{children}</main>
          </body>
       </html>
